@@ -58,7 +58,16 @@ message.innerHTML = `We use cookies for improved functionality and analytics. <b
 
 // header.prepend(message); // prepending adds element as the first child of an element.
 
-header.append(message); // append puts it as the last chald of an element
+header.append(message); // append puts it as the last child of an element
+
+// YOU CAN CLONE AN ELEMENT TO ATTACH IT TO DIFFERENCE PLACES. This is done in a case you want to attach same element in different places. if you prepend and append without clonning, the append will overwrite the prepend.
+
+// header.prepend(message.cloneNode(true));
+
+// YOU CAN ATTACH SUB ELEMENTS BEFORE ITS PARENT ELEMENT OR EVEN AFTER
+
+/* header.before(message); */
+/* header.after(message); */
 
 // DELETING ELEMENTS
 // Here I am saying if I click on the cookie button, please remove the cookie.
