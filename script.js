@@ -168,6 +168,23 @@ const randomColor = () =>
 
 document.querySelector(`.nav__link`).addEventListener(`click`, function (e) {});
 
+// JUST GENERAL PRACTICE ON DOM MANIPULATION
+// SELECTING ELEMENTS
+
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
+
+document.querySelector(".header");
+const allSelections = document.querySelectorAll(".section");
+console.log(allSelections);
+
+document.getElementById("section--1");
+const allButtons = document.getElementsByTagName("button");
+console.log(allButtons);
+document.getElementsByClassName("btn");
+
+// CREATING AND INSERTING ELEMENTS.
+// .insertAdjacentHTML
+
+document.createElement("div");
