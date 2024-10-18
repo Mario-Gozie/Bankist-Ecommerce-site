@@ -131,6 +131,7 @@ console.log(link.getAttribute("href"));
 console.log(link.href);
 
 // DATA ATTRIBUTES These attributes must start with Data, and then what ever we want
+console.log(logo.dataset.versionNumber); // if you look at the original HTML file. the dataset attribute was written in small letter and seperated by hyphens. here in Javascript, it is written in Camel case.
 
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
 // THFER ARE TWO WAYS OF DOING THIS
