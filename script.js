@@ -100,6 +100,9 @@ console.log(message.style.backgroundColor); // This style did not show because I
 console.log(getComputedStyle(message).color);
 console.log(getComputedStyle(message).height);
 
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
+
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
 // THFER ARE TWO WAYS OF DOING THIS
 
