@@ -84,6 +84,12 @@ document
     message.remove();
   });
 
+// WORKING ON STYLES.
+// changing colour
+message.style.backgroundColor = "#37383d";
+// width
+message.style.width = "120%";
+
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
 // THFER ARE TWO WAYS OF DOING THIS
 
