@@ -101,7 +101,36 @@ console.log(getComputedStyle(message).color);
 console.log(getComputedStyle(message).height);
 
 message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 40 + "px";
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+
+// CHANGING CUSTOM PROPERTIES IN CSS These are more like Variables in programming language.
+
+//document.documentElement.style.setProperty("--color-primary", "orangered");
+
+// Attributes
+
+const logo = document.querySelector(".nav__logo");
+
+console.log(logo.src);
+console.log(logo.src);
+
+// Setting Attribute
+
+logo.setAttribute("company", "Bankist");
+
+// Usuing set attributes gives you the link as it is written in Html (Absilute) while getting link attributes and source directly gives you the reference values, or relative values as one may call it.
+
+// Getting attributes with getAttribute method. The interesting thing about this is that you can even get attributes that are not standard attributes. Eg I can create an attribute within Designer within an element which is not a standard attribute like class, ID and src and I will still get the attribute into JavaScript with the help of the get attribute method without any issue.
+
+console.log(logo.getAttribute("Designer"));
+
+// Another Difference between getAttributes and getting attributes directly.
+
+const link = document.querySelector(".nav__link--btn");
+console.log(link.getAttribute("href"));
+console.log(link.href);
+
+// DATA ATTRIBUTES These attributes must start with Data, and then what ever we want
 
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
 // THFER ARE TWO WAYS OF DOING THIS
