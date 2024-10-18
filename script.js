@@ -90,6 +90,16 @@ message.style.backgroundColor = "#37383d";
 // width
 message.style.width = "120%";
 
+// GETTING STYLES YOU DIDN'T GIVE BY YOUR SELF
+
+console.log(message.style.color); // This was printed because I set this by myself here in JavaScript.
+console.log(message.style.backgroundColor); // This style did not show because I didn't set this here
+
+// To get styles you didnt set yourself with Javascript, you use getComputedStyle
+
+console.log(getComputedStyle(message).color);
+console.log(getComputedStyle(message).height);
+
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
 // THFER ARE TWO WAYS OF DOING THIS
 
