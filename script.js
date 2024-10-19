@@ -246,3 +246,5 @@ document.getElementsByClassName("btn");
 // .insertAdjacentHTML
 
 document.createElement("div");
+
+console.log(`I need money`);
