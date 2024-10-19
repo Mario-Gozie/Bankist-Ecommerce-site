@@ -259,8 +259,6 @@ document.createElement("div");
 
 let number = [20, 24, 30, 34, 45];
 
-number.map((num) => {
-  num * 2;
-});
+let newNum = number.map((num) => num * 2);
 
-console.log(number);
+console.log(newNum);
