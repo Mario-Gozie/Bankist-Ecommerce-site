@@ -133,6 +133,14 @@ console.log(link.href);
 // DATA ATTRIBUTES These attributes must start with Data, and then what ever we want
 console.log(logo.dataset.versionNumber); // if you look at the original HTML file. the dataset attribute was written in small letter and seperated by hyphens. here in Javascript, it is written in Camel case.
 
+// CLASSES
+
+logo.classList.add("c", "j"); // adding a class
+logo.classList.add("c", "j"); // removing a class
+logo.classList.add("c"); // toggling a class
+logo.classList.contains("c");
+logo.className = "jonas"; // setting a class name
+
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
 // THFER ARE TWO WAYS OF DOING THIS
 
@@ -246,16 +254,3 @@ document.getElementsByClassName("btn");
 // .insertAdjacentHTML
 
 document.createElement("div");
-
-let number = 4;
-let jones = 32;
-console.log(`I need money ${number * jones}`);
-
-function multiplication(a, b) {
-  return a * b;
-}
-
-let numbers = [23, 45, 54, 32];
-let jonas = numbers.forEach((num) => num * 2);
-
-console.log(jonas);
