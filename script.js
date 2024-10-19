@@ -259,6 +259,6 @@ document.createElement("div");
 
 let number = [20, 24, 30, 34, 45];
 
-let newNum = number.map((num) => num * 2);
+let nums = number.filter((num) => num > 30);
 
-console.log(newNum);
+console.log(nums);
