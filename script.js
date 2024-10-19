@@ -249,8 +249,13 @@ document.createElement("div");
 
 let number = 4;
 let jones = 32;
-console.log(`I need money ${number * jones}}`);
+console.log(`I need money ${number * jones}`);
 
 function multiplication(a, b) {
   return a * b;
 }
+
+let numbers = [23, 45, 54, 32];
+let jonas = numbers.forEach((num) => num * 2);
+
+console.log(jonas);
