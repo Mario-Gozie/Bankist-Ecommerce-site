@@ -250,3 +250,7 @@ document.createElement("div");
 let number = 4;
 let jones = 32;
 console.log(`I need money ${number * jones}}`);
+
+function multiplication(a, b) {
+  return a * b;
+}
