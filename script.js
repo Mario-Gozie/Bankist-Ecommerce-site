@@ -247,4 +247,5 @@ document.getElementsByClassName("btn");
 
 document.createElement("div");
 
-console.log(`I need money`);
+let number = 1;
+console.log(`I need money ${number}}`);
