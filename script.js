@@ -139,6 +139,8 @@ logo.classList.add("c", "j"); // adding a class
 logo.classList.add("c", "j"); // removing a class
 logo.classList.add("c"); // toggling a class
 logo.classList.contains("c");
+
+// dont use this below, it will overwrite all existing classes and use only one class, which is the one you chose
 logo.className = "jonas"; // setting a class name
 
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
@@ -254,3 +256,11 @@ document.getElementsByClassName("btn");
 // .insertAdjacentHTML
 
 document.createElement("div");
+
+let number = [20, 24, 30, 34, 45];
+
+number.map((num) => {
+  num * 2;
+});
+
+console.log(number);
