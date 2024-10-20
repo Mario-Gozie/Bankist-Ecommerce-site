@@ -88,13 +88,32 @@ btnScrollTo.addEventListener("click", function (e) {
 
 // PAGE NAVIGATION
 
-document.querySelectorAll(".nav__link").forEach(function (el) {
-  el.addEventListener("click", function (e) {
-    e.preventDefault();
-    const id = this.getAttribute("href");
+// document.querySelectorAll(".nav__link").forEach(function (el) {
+//   el.addEventListener("click", function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute("href");
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+//   });
+// });
+
+// The above works but using Bobbling effect. using the method above when there are 1000 elements with the .nav__link class will slow down the code so it is better to use a bobbling effect which we will see below
+
+// THIS IS CALLED EVENT DELEGATION.
+// 1. Add event listener to common parent element
+// 2. Determine what element that originated the event
+
+document.querySelector(".nav__links").addEventListener("click", function (e) {
+  e.preventDefault();
+  // console.log(e.target); //e.target is the actual target where event happend
+
+  // Matching strategy
+  if (e.target.classList.contains("nav__link")) {
+    //e.target is the part of the parent element that was clicked. so in this case, the nav__links is the e while e.target a nav__link inside nav__links.
+    const id = e.target.getAttribute("href");
     console.log(id);
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
-  });
+  }
 });
 
 // ALL BELOW HERE ARE NOT PART OF THE CODE. THEY ARE FOR EXPERIMENT.
