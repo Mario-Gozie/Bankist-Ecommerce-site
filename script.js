@@ -103,46 +103,6 @@ console.log(getComputedStyle(message).height);
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
 
-// CHANGING CUSTOM PROPERTIES IN CSS These are more like Variables in programming language.
-
-//document.documentElement.style.setProperty("--color-primary", "orangered");
-
-// Attributes
-
-const logo = document.querySelector(".nav__logo");
-
-console.log(logo.src);
-console.log(logo.src);
-
-// Setting Attribute
-
-logo.setAttribute("company", "Bankist");
-
-// Usuing set attributes gives you the link as it is written in Html (Absilute) while getting link attributes and source directly gives you the reference values, or relative values as one may call it.
-
-// Getting attributes with getAttribute method. The interesting thing about this is that you can even get attributes that are not standard attributes. Eg I can create an attribute within Designer within an element which is not a standard attribute like class, ID and src and I will still get the attribute into JavaScript with the help of the get attribute method without any issue.
-
-console.log(logo.getAttribute("Designer"));
-
-// Another Difference between getAttributes and getting attributes directly.
-
-const link = document.querySelector(".nav__link--btn");
-console.log(link.getAttribute("href"));
-console.log(link.href);
-
-// DATA ATTRIBUTES These attributes must start with Data, and then what ever we want
-console.log(logo.dataset.versionNumber); // if you look at the original HTML file. the dataset attribute was written in small letter and seperated by hyphens. here in Javascript, it is written in Camel case.
-
-// CLASSES
-
-logo.classList.add("c", "j"); // adding a class
-logo.classList.add("c", "j"); // removing a class
-logo.classList.add("c"); // toggling a class
-logo.classList.contains("c");
-
-// dont use this below, it will overwrite all existing classes and use only one class, which is the one you chose
-logo.className = "jonas"; // setting a class name
-
 // IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
 // THFER ARE TWO WAYS OF DOING THIS
 
@@ -234,31 +194,6 @@ const randomColor = () =>
 
 // console.log(randomColor(0, 255));
 
-document.querySelector(`.nav__link`).addEventListener(`click`, function (e) {});
-
-// JUST GENERAL PRACTICE ON DOM MANIPULATION
-// SELECTING ELEMENTS
-
-console.log(document.documentElement);
-console.log(document.head);
-console.log(document.body);
-
-document.querySelector(".header");
-const allSelections = document.querySelectorAll(".section");
-console.log(allSelections);
-
-document.getElementById("section--1");
-const allButtons = document.getElementsByTagName("button");
-console.log(allButtons);
-document.getElementsByClassName("btn");
-
-// CREATING AND INSERTING ELEMENTS.
-// .insertAdjacentHTML
-
-document.createElement("div");
-
-let number = [20, 24, 30, 34, 45];
-
-let nums = number.filter((num) => num > 30);
-
-console.log(nums);
+document.querySelector(".nav__link").addEventListener(`click`, function (e) {
+  console.log(`LINKS`);
+});
