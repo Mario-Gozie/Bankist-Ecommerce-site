@@ -1,5 +1,7 @@
 "use strict";
 
+const btnScrollTo = document.querySelector(".btn--scroll-to");
+const section1 = document.querySelector("#section--1");
 ///////////////////////////////////////
 // Modal window
 
@@ -38,6 +40,64 @@ document.addEventListener("keydown", function (e) {
     closeModal();
   }
 });
+
+// IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
+// THFER ARE TWO WAYS OF DOING THIS
+
+btnScrollTo.addEventListener("click", function (e) {
+  e.preventDefault();
+  // getting coordinates (current position of an Element based on the current viewPort) of the elements we want to scroll to with getBoundingClientRect. (as a hint, the rect means rectangle) This will reveal the distance along the x axis (which is also the left property of the geBoindingClientRect() object value) to the element, the distance from the top to the element which is Y axis(which is also the Top property of the geBoindingClientRect() object value), then its width, height and other features. But the problem with this is that the X and Y cordinates are in respect to the ViewPort not the Document.
+  const s1coords = section1.getBoundingClientRect();
+
+  // seeing coordinate of where we want to scroll to
+  console.log(s1coords);
+
+  // getting coordinate for element (current position of an Element based on the current viewPort) we want to click (The Learn more button). This will reveal the distance along the x axis (which is also the left property of the geBoindingClientRect() object value) to the element, the distance from the top to the element which is Y axis (which is also the Top property of the geBoindingClientRect() object value), then its width, height and other features. But the problem with this just like in above is that the X and Y cordinates are in respect to the ViewPort not the Document.
+  console.log(e.target.getBoundingClientRect()); // This is not really necessary now anyway.😒😒😒 Just for Practice
+
+  // WE CAN GET HOW FAR WE HAVE SCROLLED (current scroll) BASED ON THE DOCUMENT AND NOT THE VIEWPORT. in other words, it is the distace we have scrolled from the begining og the document to the top edge of the computer screen. This will give 0 for the X axis because there was no scrolling on the X axis. See below!
+  console.log(`Current Scroll (X/Y)`, Window.pageXOffset, Window.pageYOffset);
+
+  // we can get height and width of the current viewPort. that is, what you can see currently.
+
+  console.log(
+    `height/width viewport`,
+    document.documentElement.clientHeight,
+    document.documentElement.clientWidth
+  );
+
+  // THE MAIN SCROLLING CODES
+  // To allow the scrolling happen, we have to add the  X and Y current position based on current view port to the distance scrolled on the documents. You need to understand the codes above to understand below!
+  window.scrollTo(
+    s1coords.left + Window.pageXOffset,
+    s1coords.top + Window.pageYOffset
+  );
+
+  // YOU CAN PASS IN AN OBJECT INSTEAD OF SINGLE ARGUMENT AND ALSO ADD A BEHAVIOUR PROPERTY OF SMOOTH TO MAKE IT MOVE SMOOTHLY. still on making the scrolling work.
+  window.scrollTo({
+    lefft: s1coords.left + Window.pageXOffset,
+    top: s1coords.top + Window.pageYOffset,
+    behavior: "smooth",
+  });
+
+  // THE ABOVE METHODS OF SCROLLING IS AN OLD SCHOOL WAY, THERE IS A MORE MODERN WAY OF DOING THE SCROLLING USING scrollIntoView and pass in an Object of behavior smooth
+
+  // This is easier
+  section1.scrollIntoView({ behavior: "smooth" });
+});
+
+// PAGE NAVIGATION
+
+document.querySelectorAll(".nav__link").forEach(function (el) {
+  el.addEventListener("click", function (e) {
+    e.preventDefault();
+    const id = this.getAttribute("href");
+    console.log(id);
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
+  });
+});
+
+// ALL BELOW HERE ARE NOT PART OF THE CODE. THEY ARE FOR EXPERIMENT.
 
 const header = document.querySelector(".header"); // This selects the first element with the class Header
 
@@ -103,54 +163,6 @@ console.log(getComputedStyle(message).height);
 message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
 
-// IMPLEMENTING SMOOTH SCROLLING WITH THE LEARN MORE BUTTON
-// THFER ARE TWO WAYS OF DOING THIS
-
-const btnScrollTo = document.querySelector(".btn--scroll-to");
-const section1 = document.querySelector("#section--1");
-
-btnScrollTo.addEventListener("click", function (e) {
-  e.preventDefault();
-  // getting coordinates (current position of an Element based on the current viewPort) of the elements we want to scroll to with getBoundingClientRect. (as a hint, the rect means rectangle) This will reveal the distance along the x axis (which is also the left property of the geBoindingClientRect() object value) to the element, the distance from the top to the element which is Y axis(which is also the Top property of the geBoindingClientRect() object value), then its width, height and other features. But the problem with this is that the X and Y cordinates are in respect to the ViewPort not the Document.
-  const s1coords = section1.getBoundingClientRect();
-
-  // seeing coordinate of where we want to scroll to
-  console.log(s1coords);
-
-  // getting coordinate for element (current position of an Element based on the current viewPort) we want to click (The Learn more button). This will reveal the distance along the x axis (which is also the left property of the geBoindingClientRect() object value) to the element, the distance from the top to the element which is Y axis (which is also the Top property of the geBoindingClientRect() object value), then its width, height and other features. But the problem with this just like in above is that the X and Y cordinates are in respect to the ViewPort not the Document.
-  console.log(e.target.getBoundingClientRect()); // This is not really necessary now anyway.😒😒😒 Just for Practice
-
-  // WE CAN GET HOW FAR WE HAVE SCROLLED (current scroll) BASED ON THE DOCUMENT AND NOT THE VIEWPORT. in other words, it is the distace we have scrolled from the begining og the document to the top edge of the computer screen. This will give 0 for the X axis because there was no scrolling on the X axis. See below!
-  console.log(`Current Scroll (X/Y)`, Window.pageXOffset, Window.pageYOffset);
-
-  // we can get height and width of the current viewPort. that is, what you can see currently.
-
-  console.log(
-    `height/width viewport`,
-    document.documentElement.clientHeight,
-    document.documentElement.clientWidth
-  );
-
-  // THE MAIN SCROLLING CODES
-  // To allow the scrolling happen, we have to add the  X and Y current position based on current view port to the distance scrolled on the documents. You need to understand the codes above to understand below!
-  window.scrollTo(
-    s1coords.left + Window.pageXOffset,
-    s1coords.top + Window.pageYOffset
-  );
-
-  // YOU CAN PASS IN AN OBJECT INSTEAD OF SINGLE ARGUMENT AND ALSO ADD A BEHAVIOUR PROPERTY OF SMOOTH TO MAKE IT MOVE SMOOTHLY. still on making the scrolling work.
-  window.scrollTo({
-    lefft: s1coords.left + Window.pageXOffset,
-    top: s1coords.top + Window.pageYOffset,
-    behavior: "smooth",
-  });
-
-  // THE ABOVE METHODS OF SCROLLING IS AN OLD SCHOOL WAY, THERE IS A MORE MODERN WAY OF DOING THE SCROLLING USING scrollIntoView and pass in an Object of behavior smooth
-
-  // This is easier
-  section1.scrollIntoView({ behavior: "smooth" });
-});
-
 // // MOUSE ENTER EVENT LISTENER This will make, whenever you hover over a h1 element, you will have an alert.
 const h1 = document.querySelector("h1");
 
@@ -195,5 +207,12 @@ const randomColor = () =>
 // console.log(randomColor(0, 255));
 
 document.querySelector(".nav__link").addEventListener(`click`, function (e) {
+  console.log(`LINKS`);
+  console.log(e.currentTarget === this);
+});
+document.querySelector(".nav__links").addEventListener(`click`, function (e) {
+  console.log(`LINKS`);
+});
+document.querySelector(".nav").addEventListener(`click`, function (e) {
   console.log(`LINKS`);
 });
