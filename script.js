@@ -99,7 +99,7 @@ btnScrollTo.addEventListener("click", function (e) {
 
 // The above works but using Bobbling effect. using the method above when there are 1000 elements with the .nav__link class will slow down the code so it is better to use a bobbling effect which we will see below
 
-// THIS IS CALLED EVENT DELEGATION.
+// THIS IS CALLED EVENT DELEGATION. (You need to understand bubbling effect to understand the code below)
 // 1. Add event listener to common parent element
 // 2. Determine what element that originated the event
 
@@ -115,6 +115,20 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
     document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   }
 });
+
+// DOM TRANSVERSING
+
+const h1 = document.querySelector("h1");
+// querySelector also works on elements not only documents. so let us select the a child element inside h1 element.
+
+// Going downwards: child
+console.log(h1.querySelectorAll(".highlight"));
+console.log(h1.childNodes); //This will give you all the nodes or child element. but it is not always used. most times, we focus on the element we need. just like above where we selected highlight.
+h1.firstElementChild.style.color = "white";
+h1.lastElementChild.style.color = "orangered";
+
+// Going upward: parents
+console.log(h1.parentNode);
 
 // ALL BELOW HERE ARE NOT PART OF THE CODE. THEY ARE FOR EXPERIMENT.
 
@@ -183,7 +197,7 @@ message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
 
 // // MOUSE ENTER EVENT LISTENER This will make, whenever you hover over a h1 element, you will have an alert.
-const h1 = document.querySelector("h1");
+// const h1 = document.querySelector("h1");
 
 // h1.addEventListener(`mouseenter`, function (e) {
 //   alert(`addEventlistener: Great!You are reading the heading :D`);
