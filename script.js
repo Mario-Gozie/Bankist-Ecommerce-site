@@ -116,6 +116,21 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
   }
 });
 
+// Tabbed component
+const tabs = document.querySelectorAll(".operations__tab");
+const tabsContainer = document.querySelector(".operations__tab-container");
+const tabsContent = document.querySelectorAll(".operations__content");
+
+// tabs.forEach((t) => {
+//   t.addEventListener("click", () => console.log("TAB"));
+// });
+
+tabsContainer.addEventListener("click", function (e) {
+  e.preventDefault();
+  const clicked = e.target.closest(".operations__tab");
+  clicked.classList.add("operations__tab--active");
+});
+
 // // DOM TRANSVERSING
 
 // const h1 = document.querySelector("h1");
@@ -137,6 +152,8 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
 // // FINDING A PARENT ELEMENT NO MATTER HOW FAR IT IS
 
 // h1.closest(".header").style.background = "var(--gradient-secondary)"; //This selects the closest element to h1 and changes the background colour. we used one of the color varieables we have in CSS to do this.
+
+// h1.closest("h1").style.background = "var(--gradient-primary)"; //This will still point at the same parent element
 
 // // one take home here is that closest is like query selector but closest is used to find parent element but querySelector is used to find children
 
