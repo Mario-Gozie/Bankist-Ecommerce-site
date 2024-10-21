@@ -116,136 +116,162 @@ document.querySelector(".nav__links").addEventListener("click", function (e) {
   }
 });
 
-// DOM TRANSVERSING
+// // DOM TRANSVERSING
 
-const h1 = document.querySelector("h1");
-// querySelector also works on elements not only documents. so let us select the a child element inside h1 element.
-
-// Going downwards: child
-console.log(h1.querySelectorAll(".highlight"));
-console.log(h1.childNodes); //This will give you all the nodes or child element. but it is not always used. most times, we focus on the element we need. just like above where we selected highlight.
-h1.firstElementChild.style.color = "white";
-h1.lastElementChild.style.color = "orangered";
-
-// Going upward: parents
-console.log(h1.parentNode);
-
-// ALL BELOW HERE ARE NOT PART OF THE CODE. THEY ARE FOR EXPERIMENT.
-
-const header = document.querySelector(".header"); // This selects the first element with the class Header
-
-// CREATING AND INSERTING ELEMENTS
-
-//.insertAdjacentHTML i have once used this in the bankist app
-
-const message = document.createElement("div"); // This will create a DOM element and stored it in message but yet to put it on the page.
-
-// ADDING A CLASS THE MESSAGE ELEMENT
-message.classList.add("cookie-message");
-
-// ADDING THE TEXT WITH INNERHTML METHOD
-
-message.innerHTML = `We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>`;
-
-// WE CAN INSERT/APPEND THE MESSAGE INTO THE WEBPAGE
-
-// header.prepend(message); // prepending adds element as the first child of an element.
-
-header.append(message); // append puts it as the last child of an element
-
-// YOU CAN CLONE AN ELEMENT TO ATTACH IT TO DIFFERENCE PLACES. This is done in a case you want to attach same element in different places. if you prepend and append without clonning, the append will overwrite the prepend.
-
-// header.prepend(message.cloneNode(true));
-
-// YOU CAN ATTACH SUB ELEMENTS BEFORE ITS PARENT ELEMENT OR EVEN AFTER
-
-/* header.before(message); */
-/* header.after(message); */
-
-// DELETING ELEMENTS
-// Here I am saying if I click on the cookie button, please remove the cookie.
-
-document
-  .querySelector(`.btn--close-cookie`)
-  .addEventListener("click", function () {
-    // old way of removing elements. see directly below
-
-    // message.parentElement.removeChild(message);
-
-    // New method of removing elements
-
-    message.remove();
-  });
-
-// WORKING ON STYLES.
-// changing colour
-message.style.backgroundColor = "#37383d";
-// width
-message.style.width = "120%";
-
-// GETTING STYLES YOU DIDN'T GIVE BY YOUR SELF
-
-console.log(message.style.color); // This was printed because I set this by myself here in JavaScript.
-console.log(message.style.backgroundColor); // This style did not show because I didn't set this here
-
-// To get styles you didnt set yourself with Javascript, you use getComputedStyle
-
-console.log(getComputedStyle(message).color);
-console.log(getComputedStyle(message).height);
-
-message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
-
-// // MOUSE ENTER EVENT LISTENER This will make, whenever you hover over a h1 element, you will have an alert.
 // const h1 = document.querySelector("h1");
+// // querySelector also works on elements not only documents. so let us select the a child element inside h1 element.
 
-// h1.addEventListener(`mouseenter`, function (e) {
-//   alert(`addEventlistener: Great!You are reading the heading :D`);
+// // Going downwards: child
+// console.log(h1.querySelectorAll(".highlight"));
+// console.log(h1.childNodes); //This will give you all the nodes or child element. but it is not always used. most times, we focus on the element we need. just like above where we selected highlight.
+// h1.firstElementChild.style.color = "white";
+// h1.lastElementChild.style.color = "orangered";
+
+// // Going upward: parents
+// console.log(h1.parentNode);
+// console.log(h1.parentElement);
+
+// // the both codes above give the direct parents of an element.
+
+// // How about when you need to find an element, no mater how far away it is?
+// // FINDING A PARENT ELEMENT NO MATTER HOW FAR IT IS
+
+// h1.closest(".header").style.background = "var(--gradient-secondary)"; //This selects the closest element to h1 and changes the background colour. we used one of the color varieables we have in CSS to do this.
+
+// // one take home here is that closest is like query selector but closest is used to find parent element but querySelector is used to find children
+
+// // Going sideways: siblings
+// console.log(h1.previousElementSibling);
+// console.log(h1.nextElementSibling);
+
+// // accessing a parent element's children with one of its elements.
+// console.log(h1.parentElement.children);
+
+// // LET'S DO SOMETHING INTERESTTING
+// [...h1.parentElement.children].forEach(function (ele) {
+//   if (ele !== h1) {
+//     ele.style.transform = "scale(0.5)";
+//   }
 // });
 
-// // AN ALTERNATIVE WAY OF SETTING AN EVENT LISTERNER INSTEAD OF USING THE ADDEVENTLISTERNER METHOD. This is with the use of on then the name of the event to be listened for directly next to the on then equating to the function. all event listerners can use on before it but using on is a bit old fashioned.
+// // BUILDING A TABBED COMPONENT.
 
-// h1.onmouseenter = function (e) {
-//   alert(`addEventlistener: Great!You are reading the heading :D`);
+// // ALL BELOW HERE ARE NOT PART OF THE CODE. THEY ARE FOR EXPERIMENT.
+
+// const header = document.querySelector(".header"); // This selects the first element with the class Header
+
+// // CREATING AND INSERTING ELEMENTS
+
+// //.insertAdjacentHTML i have once used this in the bankist app
+
+// const message = document.createElement("div"); // This will create a DOM element and stored it in message but yet to put it on the page.
+
+// // ADDING A CLASS THE MESSAGE ELEMENT
+// message.classList.add("cookie-message");
+
+// // ADDING THE TEXT WITH INNERHTML METHOD
+
+// message.innerHTML = `We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Got it!</button>`;
+
+// // WE CAN INSERT/APPEND THE MESSAGE INTO THE WEBPAGE
+
+// // header.prepend(message); // prepending adds element as the first child of an element.
+
+// header.append(message); // append puts it as the last child of an element
+
+// // YOU CAN CLONE AN ELEMENT TO ATTACH IT TO DIFFERENCE PLACES. This is done in a case you want to attach same element in different places. if you prepend and append without clonning, the append will overwrite the prepend.
+
+// // header.prepend(message.cloneNode(true));
+
+// // YOU CAN ATTACH SUB ELEMENTS BEFORE ITS PARENT ELEMENT OR EVEN AFTER
+
+// /* header.before(message); */
+// /* header.after(message); */
+
+// // DELETING ELEMENTS
+// // Here I am saying if I click on the cookie button, please remove the cookie.
+
+// document
+//   .querySelector(`.btn--close-cookie`)
+//   .addEventListener("click", function () {
+//     // old way of removing elements. see directly below
+
+//     // message.parentElement.removeChild(message);
+
+//     // New method of removing elements
+
+//     message.remove();
+//   });
+
+// // WORKING ON STYLES.
+// // changing colour
+// message.style.backgroundColor = "#37383d";
+// // width
+// message.style.width = "120%";
+
+// // GETTING STYLES YOU DIDN'T GIVE BY YOUR SELF
+
+// console.log(message.style.color); // This was printed because I set this by myself here in JavaScript.
+// console.log(message.style.backgroundColor); // This style did not show because I didn't set this here
+
+// // To get styles you didnt set yourself with Javascript, you use getComputedStyle
+
+// console.log(getComputedStyle(message).color);
+// console.log(getComputedStyle(message).height);
+
+// message.style.height =
+//   Number.parseFloat(getComputedStyle(message).height, 10) + 30 + "px";
+
+// // // MOUSE ENTER EVENT LISTENER This will make, whenever you hover over a h1 element, you will have an alert.
+// // const h1 = document.querySelector("h1");
+
+// // h1.addEventListener(`mouseenter`, function (e) {
+// //   alert(`addEventlistener: Great!You are reading the heading :D`);
+// // });
+
+// // // AN ALTERNATIVE WAY OF SETTING AN EVENT LISTERNER INSTEAD OF USING THE ADDEVENTLISTERNER METHOD. This is with the use of on then the name of the event to be listened for directly next to the on then equating to the function. all event listerners can use on before it but using on is a bit old fashioned.
+
+// // h1.onmouseenter = function (e) {
+// //   alert(`addEventlistener: Great!You are reading the heading :D`);
+// // };
+
+// // YOU CAN REMOVE AN EVENT LISTENINER AFTER IT MUST HAVE DONE ITS WORK ONCE. This is done using remove eventListner but the remove part of a function variable created earlier. see below!
+
+// const alertH1 = function (e) {
+//   alert(`addEventlistener: Great!You are reading the heading :D`); // when you hover over h1, this will come as an alert
+
+//   h1.removeEventListener("mouseenter", alertH1); // Here, we are removing the event listener within so that when you hover subsequent times, it will not happen again.
 // };
 
-// YOU CAN REMOVE AN EVENT LISTENINER AFTER IT MUST HAVE DONE ITS WORK ONCE. This is done using remove eventListner but the remove part of a function variable created earlier. see below!
+// h1.addEventListener("mouseenter", alertH1); // Here is where we are calling the event listener
 
-const alertH1 = function (e) {
-  alert(`addEventlistener: Great!You are reading the heading :D`); // when you hover over h1, this will come as an alert
+// // YOU CAN REMOVE AN EVENT LISTENER AGTER SOME TIME. See below an example of removing an event listener after 3 seconds
 
-  h1.removeEventListener("mouseenter", alertH1); // Here, we are removing the event listener within so that when you hover subsequent times, it will not happen again.
-};
+// setTimeout(() => {
+//   h1.removeEventListener("mouseenter", alertH1);
+// }, 3000);
 
-h1.addEventListener("mouseenter", alertH1); // Here is where we are calling the event listener
+// // EVENT PROPAGATION: BUBBLING AND CAPTURING PHASE.
 
-// YOU CAN REMOVE AN EVENT LISTENER AGTER SOME TIME. See below an example of removing an event listener after 3 seconds
+// // CREATING A RANDOM COLOR
 
-setTimeout(() => {
-  h1.removeEventListener("mouseenter", alertH1);
-}, 3000);
+// // rgb(255,255,255)
 
-// EVENT PROPAGATION: BUBBLING AND CAPTURING PHASE.
+// const randomInt = (min, max) =>
+//   Math.floor(Math.random() * (max - min + 1) + min);
 
-// CREATING A RANDOM COLOR
+// const randomColor = () =>
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
 
-// rgb(255,255,255)
+// // console.log(randomColor(0, 255));
 
-const randomInt = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min);
-
-const randomColor = () =>
-  `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
-
-// console.log(randomColor(0, 255));
-
-document.querySelector(".nav__link").addEventListener(`click`, function (e) {
-  console.log(`LINKS`);
-  console.log(e.currentTarget === this);
-});
-document.querySelector(".nav__links").addEventListener(`click`, function (e) {
-  console.log(`LINKS`);
-});
-document.querySelector(".nav").addEventListener(`click`, function (e) {
-  console.log(`LINKS`);
-});
+// document.querySelector(".nav__link").addEventListener(`click`, function (e) {
+//   console.log(`LINKS`);
+//   console.log(e.currentTarget === this);
+// });
+// document.querySelector(".nav__links").addEventListener(`click`, function (e) {
+//   console.log(`LINKS`);
+// });
+// document.querySelector(".nav").addEventListener(`click`, function (e) {
+//   console.log(`LINKS`);
+// });
