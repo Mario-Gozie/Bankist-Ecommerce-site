@@ -132,8 +132,14 @@ tabsContainer.addEventListener("click", function (e) {
   // Guard clause
   if (!clicked) return; // this is used to break out of the function incase there is no clicked value, i.e incase you click anywhere that is not the button.
 
+  // Active tab
   tabs.forEach((t) => t.classList.remove("operations__tab--active"));
   clicked.classList.add("operations__tab--active");
+
+  // Activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add("operations__content--active");
 });
 
 // // DOM TRANSVERSING
