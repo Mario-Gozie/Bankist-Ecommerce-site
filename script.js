@@ -128,6 +128,9 @@ const tabsContent = document.querySelectorAll(".operations__content");
 tabsContainer.addEventListener("click", function (e) {
   e.preventDefault();
   const clicked = e.target.closest(".operations__tab");
+
+  // Guard clause
+  if (!clicked) return;
   clicked.classList.add("operations__tab--active");
 });
 
