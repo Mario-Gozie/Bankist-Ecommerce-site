@@ -130,7 +130,9 @@ tabsContainer.addEventListener("click", function (e) {
   const clicked = e.target.closest(".operations__tab");
 
   // Guard clause
-  if (!clicked) return;
+  if (!clicked) return; // this is used to break out of the function incase there is no clicked value, i.e incase you click anywhere that is not the button.
+
+  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
   clicked.classList.add("operations__tab--active");
 });
 
