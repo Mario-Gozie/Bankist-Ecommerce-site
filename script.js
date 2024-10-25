@@ -148,7 +148,25 @@ tabsContainer.addEventListener("click", function (e) {
 
 // CREATING A FUNCTION TO PREVENT REPEATATION OF CODES
 
-const handleHover = function (e, opacity) {
+// const handleHover = function (e, opacity) {
+//   // e.preventDefault;
+//   // console.log(e.target);
+//   if (e.target.classList.contains("nav__link")) {
+//     const link = e.target;
+//     // console.log(link);
+//     const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+//     const logo = link.closest(".nav").querySelector("img");
+
+//     siblings.forEach((el) => {
+//       if (el !== link) el.style.opacity = opacity;
+//     });
+//     logo.style.opacity = opacity;
+//   }
+// };
+
+// THE FUNCTION ABOVE WORKS SAME WAY WITH THE ONE HERE. REMEMBER THAT WHATEVER YOU PASS INTO THE BIND FUNCTION IS THE THIS KEY WORD
+
+const handleHover = function () {
   // e.preventDefault;
   // console.log(e.target);
   if (e.target.classList.contains("nav__link")) {
@@ -158,13 +176,14 @@ const handleHover = function (e, opacity) {
     const logo = link.closest(".nav").querySelector("img");
 
     siblings.forEach((el) => {
-      if (el !== link) el.style.opacity = opacity;
+      if (el !== link) el.style.opacity = this;
     });
-    logo.style.opacity = opacity;
+    logo.style.opacity = this;
   }
 };
 
 // CALLING THE FUNCTIONS BELOW
+// remember addEventlistener takes only a function, that is why I used the function(e){} here instead of calling the handleHover. in such situation, it will return a value and if printed on the console, it will show undefined.
 nav.addEventListener("mouseover", function (e) {
   handleHover(e, 0.5);
 });
@@ -172,6 +191,12 @@ nav.addEventListener("mouseover", function (e) {
 // USING THE BIND METHOD
 
 // The above could be also done with a bind method which returns a function. this will stop us from using the function keyword again.
+
+// bind was used because whatever value you pass into bind is the this keyword. which is e in this case. that is why I didnt pass e while using the bind method, becasuse it returns the element to which the event listener is attached to.
+
+// To make understanding easier, we didnt pass the call the handle hover function directly because add event listener needs a function. and if it already which it will call by itself. so because the bind method returns a function, that is why it is used. if I call the handleHover function just like that, it will return a value and not a function.
+
+nav.addEventListener("mouseover", handleHover.bind(e, 0.5));
 nav.addEventListener("mouseover", handleHover.bind(0.5));
 
 // REMOVING THE FADE ANIMATION EACH TIME THE MOUSE IS REMOVED
@@ -181,7 +206,7 @@ nav.addEventListener("mouseout", function (e) {
 });
 
 // USING THE BIND METHOD
-
+nav.addEventListener("mouseout", handleHover.bind(e, 1));
 nav.addEventListener("mouseout", handleHover.bind(1));
 
 // // DOM TRANSVERSING
