@@ -167,8 +167,9 @@ tabsContainer.addEventListener("click", function (e) {
 // THE FUNCTION ABOVE WORKS SAME WAY WITH THE ONE HERE. REMEMBER THAT WHATEVER YOU PASS INTO THE BIND FUNCTION IS THE THIS KEY WORD
 
 const handleHover = function () {
-  // e.preventDefault;
-  // console.log(e.target);
+  // the e was removed because all event handler function can only have one real argument which is the even. that is why the e is not necessary hare or  mandatory
+  e.preventDefault;
+  console.log(e.target);
   if (e.target.classList.contains("nav__link")) {
     const link = e.target;
     // console.log(link);
