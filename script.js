@@ -145,7 +145,10 @@ tabsContainer.addEventListener("click", function (e) {
 });
 
 // MENU FADE ANIMATION
-nav.addEventListener("mouseover", function (e) {
+
+// CREATING A FUNCTION TO PREVENT REPEATATION OF CODES
+
+const handleHover = function (e, opacity) {
   // e.preventDefault;
   // console.log(e.target);
   if (e.target.classList.contains("nav__link")) {
@@ -155,27 +158,31 @@ nav.addEventListener("mouseover", function (e) {
     const logo = link.closest(".nav").querySelector("img");
 
     siblings.forEach((el) => {
-      if (el !== link) el.style.opacity = 0.5;
+      if (el !== link) el.style.opacity = opacity;
     });
-    logo.style.opacity = 0.5;
+    logo.style.opacity = opacity;
   }
+};
+
+// CALLING THE FUNCTIONS BELOW
+nav.addEventListener("mouseover", function (e) {
+  handleHover(e, 0.5);
 });
+
+// USING THE BIND METHOD
+
+// The above could be also done with a bind method which returns a function. this will stop us from using the function keyword again.
+nav.addEventListener("mouseover", handleHover.bind(0.5));
 
 // REMOVING THE FADE ANIMATION EACH TIME THE MOUSE IS REMOVED
 
 nav.addEventListener("mouseout", function (e) {
-  if (e.target.classList.contains("nav__link")) {
-    const link = e.target;
-    // console.log(link);
-    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
-    const logo = link.closest(".nav").querySelector("img");
-
-    siblings.forEach((el) => {
-      if (el !== link) el.style.opacity = 1;
-    });
-    logo.style.opacity = 1;
-  }
+  handleHover(e, 1);
 });
+
+// USING THE BIND METHOD
+
+nav.addEventListener("mouseout", handleHover.bind(1));
 
 // // DOM TRANSVERSING
 
