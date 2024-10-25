@@ -166,10 +166,9 @@ tabsContainer.addEventListener("click", function (e) {
 
 // THE FUNCTION ABOVE WORKS SAME WAY WITH THE ONE HERE. REMEMBER THAT WHATEVER YOU PASS INTO THE BIND FUNCTION IS THE THIS KEY WORD
 
-const handleHover = function () {
-  // the e was removed because all event handler function can only have one real argument which is the even. that is why the e is not necessary hare or  mandatory
-  e.preventDefault;
-  console.log(e.target);
+const handleHover = function (e) {
+  // e.preventDefault;
+  // console.log(e.target);
   if (e.target.classList.contains("nav__link")) {
     const link = e.target;
     // console.log(link);
@@ -197,7 +196,6 @@ nav.addEventListener("mouseover", function (e) {
 
 // To make understanding easier, we didnt pass the call the handle hover function directly because add event listener needs a function. and if it already which it will call by itself. so because the bind method returns a function, that is why it is used. if I call the handleHover function just like that, it will return a value and not a function.
 
-nav.addEventListener("mouseover", handleHover.bind(e, 0.5));
 nav.addEventListener("mouseover", handleHover.bind(0.5));
 
 // REMOVING THE FADE ANIMATION EACH TIME THE MOUSE IS REMOVED
@@ -207,7 +205,6 @@ nav.addEventListener("mouseout", function (e) {
 });
 
 // USING THE BIND METHOD
-nav.addEventListener("mouseout", handleHover.bind(e, 1));
 nav.addEventListener("mouseout", handleHover.bind(1));
 
 // // DOM TRANSVERSING
