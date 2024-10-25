@@ -147,12 +147,35 @@ tabsContainer.addEventListener("click", function (e) {
 // MENU FADE ANIMATION
 nav.addEventListener("mouseover", function (e) {
   // e.preventDefault;
-  console.log(e.target);
-  if(e.target.classList.contains('mav__link'))
-    const Link = e.target;
-    const siblings = nk.closest('.nav')
+  // console.log(e.target);
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    // console.log(link);
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    const logo = link.closest(".nav").querySelector("img");
+
+    siblings.forEach((el) => {
+      if (el !== link) el.style.opacity = 0.5;
+    });
+    logo.style.opacity = 0.5;
+  }
 });
-nav.addEventListener("mouseout", function (e) {});
+
+// REMOVING THE FADE ANIMATION EACH TIME THE MOUSE IS REMOVED
+
+nav.addEventListener("mouseout", function (e) {
+  if (e.target.classList.contains("nav__link")) {
+    const link = e.target;
+    // console.log(link);
+    const siblings = link.closest(".nav").querySelectorAll(".nav__link");
+    const logo = link.closest(".nav").querySelector("img");
+
+    siblings.forEach((el) => {
+      if (el !== link) el.style.opacity = 1;
+    });
+    logo.style.opacity = 1;
+  }
+});
 
 // // DOM TRANSVERSING
 
