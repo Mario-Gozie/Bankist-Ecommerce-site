@@ -212,12 +212,25 @@ const initalCordinates = section1.getBoundingClientRect(); // This is used to ge
 
 // I used windows here instead of document because the scroll event is in the windows not document.
 window.addEventListener("scroll", function () {
-  // console.log(window.scrollY);
+  console.log(`scroll: ${window.scrollY}`);
+  console.log(`top: ${initalCordinates.top}`);
 
   if (window.scrollY > initalCordinates.top) {
     nav.classList.add("sticky");
   } else nav.classList.remove("sticky");
 });
+
+// IMPLEMENTING THE NEW STICKY NAVIGATION WITH THE INTERSECTION OBSERVER API
+// Intersection observer API allows our code to observe changes or the way and element intersect another element or the way it intersects the viewport.
+
+// HOW THE INTERSECTION OBSERVER API
+
+// Creating a new intersection observer.
+
+const observer = new IntersectionObserver();
+// the observe method will be called on the observer to check for a target which in our case is the section1
+
+observer.observe(section1);
 // // DOM TRANSVERSING
 
 // const h1 = document.querySelector("h1");
