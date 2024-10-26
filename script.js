@@ -207,6 +207,17 @@ nav.addEventListener("mouseout", function (e) {
 // USING THE BIND METHOD
 nav.addEventListener("mouseout", handleHover.bind(1));
 
+// CREATING A STICKY NAVIGATOR WHEN YOU GET TO DIFFERENT SECTIONS OF THE WEBPAGE
+const initalCordinates = section1.getBoundingClientRect(); // This is used to get the cordinates of section 1, then put it into inital cordinates variable.
+
+// I used windows here instead of document because the scroll event is in the windows not document.
+window.addEventListener("scroll", function () {
+  // console.log(window.scrollY);
+
+  if (window.scrollY > initalCordinates.top) {
+    nav.classList.add("sticky");
+  } else nav.classList.remove("sticky");
+});
 // // DOM TRANSVERSING
 
 // const h1 = document.querySelector("h1");
