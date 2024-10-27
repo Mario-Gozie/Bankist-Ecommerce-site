@@ -222,21 +222,24 @@ window.addEventListener("scroll", function () {
 
 // HOW THE INTERSECTION OBSERVER API
 
+// PRACTICICING WITH THE INTESECTION OBSERVER.
 // Creating a new intersection observer.
-const obsCallback = function (entries, observer) {
-  entries.forEach((entry) => {
-    console.log(entry);
-  });
-}; //This callback function will be call when the observed element intersect at the treshold of the elemnt we used as the root.
-const obsOptions = {
-  root: null, // setting root with null is simply observing the target element intersecting the viewport
-  threshold: 0.1, // this is simply the percentage at which the callback will be called and here, we are setting it to 10 percent.
-};
-const observer = new IntersectionObserver(obsCallback, obsOptions);
-// the observe method will be called on the observer to check for a target which in our case is the section1
+// const obsCallback = function (entries, observer) {
+//   entries.forEach((entry) => {
+//     console.log(entry);
+//   });
+// }; //This callback function will be call when the observed element intersect at the treshold of the elemnt we used as the root.
+// const obsOptions = {
+//   root: null, // setting root with null is simply observing the target element intersecting the viewport
+//   threshold: [0, 0.2], // this is simply the percentage at which the callback will be called and here, we are setting it to 10 percent. the Threshold can be a single value or an array. here I will use an array.
 
-observer.observe(section1); //section1 is the target
-// // DOM TRANSVERSING
+//   // in the array I am simply sayin that the trigger function will trigger when the target moves out of the view (0) and also when it enters 20% of the view.
+// };
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+// // the observe method will be called on the observer to check for a target which in our case is the section1
+
+// observer.observe(section1); //section1 is the target
+// // // DOM TRANSVERSING
 
 // const h1 = document.querySelector("h1");
 // // querySelector also works on elements not only documents. so let us select the a child element inside h1 element.
