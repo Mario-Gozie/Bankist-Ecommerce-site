@@ -219,7 +219,20 @@ window.addEventListener("scroll", function () {
 
 // IMPLEMENTING THE NEW STICKY NAVIGATION WITH THE INTERSECTION OBSERVER API
 // Intersection observer API allows our code to observe changes or the way and element intersect another element or the way it intersects the viewport.
+const header = document.querySelector(".header");
 
+const stickyNav = function (entries) {
+  // const [entry] = entries;
+  // console.log(entry);
+  if (headerObserver.isintersecting === false) nav.classList.add("sticky");
+  else nav.classList.add("sticky");
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null, //here I am basically saying that I want a situation where when no part of the header section is in the viewport, I want the navbar to show.
+  threshold: 0,
+});
+headerObserver.observe(header);
 // HOW THE INTERSECTION OBSERVER API
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
