@@ -226,11 +226,15 @@ window.addEventListener("scroll", function () {
 // HOW THE INTERSECTION OBSERVER API
 
 // Creating a new intersection observer.
-
-const observer = new IntersectionObserver();
+const obsCallback = function (entries, observer) {}; //This callback function will be call when the observed element intersect at the treshold of the elemnt we used as the root.
+const obsOptions = {
+  root: null, // setting root with null is simply observing the target element intersecting the viewport
+  threshold: 0.1, // this is simply the percentage at which the callback will be called and here, we are setting it to 10 percent.
+};
+const observer = new IntersectionObserver(obsCallback, obsOptions);
 // the observe method will be called on the observer to check for a target which in our case is the section1
 
-observer.observe(section1);
+observer.observe(section1); //section1 is the target
 // // DOM TRANSVERSING
 
 // const h1 = document.querySelector("h1");
