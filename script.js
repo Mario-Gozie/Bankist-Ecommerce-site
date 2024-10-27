@@ -222,10 +222,17 @@ window.addEventListener("scroll", function () {
 const header = document.querySelector(".header");
 
 const stickyNav = function (entries) {
+  // JUST TESTING THE CODE
   // const [entry] = entries;
   // console.log(entry);
-  if (headerObserver.isintersecting === false) nav.classList.add("sticky");
-  else nav.classList.add("sticky");
+
+  // TUTOR's PART
+  // if (headerObserver.isintersecting === false) nav.classList.add("sticky");
+  // else nav.classList.add("sticky");
+
+  //TUTORS PART
+  if (!entry.isintersecting) nav.classList.add("sticky");
+  else nav.classList.add("sticky"); // entry is simply the object in the in the new intersctionObsrver created. and one of the properties of this intersection observer is the "isintersecting"
 };
 
 const headerObserver = new IntersectionObserver(stickyNav, {
