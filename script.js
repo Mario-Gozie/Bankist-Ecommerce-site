@@ -212,9 +212,6 @@ const initalCordinates = section1.getBoundingClientRect(); // This is used to ge
 
 // I used windows here instead of document because the scroll event is in the windows not document.
 window.addEventListener("scroll", function () {
-  console.log(`scroll: ${window.scrollY}`);
-  console.log(`top: ${initalCordinates.top}`);
-
   if (window.scrollY > initalCordinates.top) {
     nav.classList.add("sticky");
   } else nav.classList.remove("sticky");
@@ -226,7 +223,11 @@ window.addEventListener("scroll", function () {
 // HOW THE INTERSECTION OBSERVER API
 
 // Creating a new intersection observer.
-const obsCallback = function (entries, observer) {}; //This callback function will be call when the observed element intersect at the treshold of the elemnt we used as the root.
+const obsCallback = function (entries, observer) {
+  entries.forEach((entry) => {
+    console.log(entry);
+  });
+}; //This callback function will be call when the observed element intersect at the treshold of the elemnt we used as the root.
 const obsOptions = {
   root: null, // setting root with null is simply observing the target element intersecting the viewport
   threshold: 0.1, // this is simply the percentage at which the callback will be called and here, we are setting it to 10 percent.
