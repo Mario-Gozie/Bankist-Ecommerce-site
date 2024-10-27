@@ -223,7 +223,7 @@ const header = document.querySelector(".header");
 
 const stickyNav = function (entries) {
   // JUST TESTING THE CODE
-  // const [entry] = entries;
+  const [entry] = entries;
   // console.log(entry);
 
   // TUTOR's PART
@@ -234,13 +234,19 @@ const stickyNav = function (entries) {
   if (!entry.isintersecting) nav.classList.add("sticky");
   else nav.classList.add("sticky"); // entry is simply the object in the in the new intersctionObsrver created. and one of the properties of this intersection observer is the "isintersecting"
 };
+const navHeight = nav.getBoundingClientRect().height;
+console.log(navHeight);
 
 const headerObserver = new IntersectionObserver(stickyNav, {
   root: null, //here I am basically saying that I want a situation where when no part of the header section is in the viewport, I want the navbar to show.
   threshold: 0,
+  // rootMargin: "-90px", // I added a visual margin at the end of the root element, this marging is same height with the height of the nav bar. this is to avoid the sticky nav bar closing part of the new section while transitioning into sticky. The negative there simply says, AT THE END OF THE HEADER. if it is positive it will add a visual margin at the begining of the header. but coding this height just like that may not be nice because there are may be differnt dimensions for the different devices. so we can use getBoundingClientRect() to get the height of the nav bar.
+  rootMargin: `${-navHeight}px`,
 });
+
 headerObserver.observe(header);
-// HOW THE INTERSECTION OBSERVER API
+
+// HOW THE INTERSECTION OBSERVER API WORKS
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
 // Creating a new intersection observer.
