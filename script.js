@@ -246,6 +246,31 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 
 headerObserver.observe(header);
 
+// HIDDING SECTION UNTIL YOU SCROLL TO IT
+
+const allSections = document.querySelectorAll(".section");
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+
+  if (!entry.isIntersecting) return; // this is break out of the code whenever th observation is false. in this case, when you are at the header. it will make transition and revealing of other sections smooter
+
+  entry.target.classList.remove("section--hidden"); // This is to remove the section hidden class.
+
+  // unobserving to remove unnecessary reoccurance.  making the action happen only once. which is nice
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add("section--hidden");
+});
 // HOW THE INTERSECTION OBSERVER API WORKS
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
