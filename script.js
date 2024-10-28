@@ -252,7 +252,7 @@ const allSections = document.querySelectorAll(".section");
 
 const revealSection = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
 
   if (!entry.isIntersecting) return; // this is break out of the code whenever th observation is false. in this case, when you are at the header. it will make transition and revealing of other sections smooter
 
@@ -271,6 +271,21 @@ allSections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add("section--hidden");
 });
+
+// LAZY IMAGE LOADING.
+// This will be done on only images that have data source (data-src) attribute in HTML
+const imgTargets = document.querySelectorAll("img[data-src]");
+// console.log(imgTargets);
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+  console.log(entry);
+};
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+});
+
+imgTargets.forEach((img) => imgObserver.observe(img));
 // HOW THE INTERSECTION OBSERVER API WORKS
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
