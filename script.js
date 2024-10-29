@@ -256,6 +256,7 @@ const revealSection = function (entries, observer) {
 
   if (!entry.isIntersecting) return; // this is break out of the code whenever th observation is false. in this case, when you are at the header. it will make transition and revealing of other sections smooter
 
+  // REMEMBER THAT WHATEVER THAT IS YOUR TARGET IS STORED IN THE TARGET ATTRIBUTE OF THE OBSERVER OBJECT
   entry.target.classList.remove("section--hidden"); // This is to remove the section hidden class.
 
   // unobserving to remove unnecessary reoccurance.  making the action happen only once. which is nice
@@ -278,11 +279,23 @@ const imgTargets = document.querySelectorAll("img[data-src]");
 // console.log(imgTargets);
 const loadImg = function (entries, observer) {
   const [entry] = entries;
-  console.log(entry);
+  // console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  // REPLACE SRC WITH DATA-SRC
+  // remember that every item you are observing will be stored in the target. also remember that all dataset properties are stored in datase.src.
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.classList.remove("lazy-img");
+
+  observer.unobserve(entry.target);
 };
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
   threshold: 0,
+  rootMargin: "200px", // This is just for the images to load before the user gets to it. so it wont be obvious that it is gradually being loaded. so we are basically adding 200px on the root just before getting to the images.
 });
 
 imgTargets.forEach((img) => imgObserver.observe(img));
