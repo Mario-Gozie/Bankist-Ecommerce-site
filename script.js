@@ -304,7 +304,7 @@ imgTargets.forEach((img) => imgObserver.observe(img));
 
 const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
-const btnRight = document.querySelector(".slider__btn--Right");
+const btnRight = document.querySelector(".slider__btn--right");
 
 // current slide
 
