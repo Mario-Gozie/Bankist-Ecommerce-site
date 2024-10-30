@@ -315,21 +315,36 @@ const slider = document.querySelector(".slider");
 slider.style.transform = "scale(0.4) translateX(-800px)";
 slider.style.overflow = "visible";
 
-slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+// slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+
+// The code abive us reokaced with goToSlides(0); during refactoring.
 
 // 0%, 100%, 200%, 300%
 
-btnRight.addEventListener("click", function () {
+// REFACTORING MY CODE TO PREVENT REPEATATION
+
+const goToSlides = function (slide) {
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
+  );
+};
+
+goToSlides(0);
+
+const nextSlide = function () {
   if (curSlide === maxSlide - 1) {
     curSlide = 0;
   } else {
     curSlide++;
   }
 
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
-  );
-});
+  // slides.forEach(
+  //   (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+  // );
+
+  goToSlides(curSlide);
+};
+btnRight.addEventListener("click", nextSlide);
 
 // -100%, 0%, -100%, -200%
 
