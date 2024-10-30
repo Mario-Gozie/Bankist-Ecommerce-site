@@ -270,7 +270,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
-  section.classList.add("section--hidden");
+  // section.classList.add("section--hidden");
 });
 
 // LAZY IMAGE LOADING.
@@ -299,6 +299,21 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 
 imgTargets.forEach((img) => imgObserver.observe(img));
+
+// IMPLEMENTING THE SLIDER
+
+const slides = document.querySelectorAll(".slide");
+
+const slider = document.querySelector(".slider");
+slider.style.transform = "scale(0.5)";
+slider.style.overflow = "visible";
+
+slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i})`));
+
+// 0%, 100%, 200%, 300%
+
+//Translate X move objects along the X axis. so here, we will move
+
 // HOW THE INTERSECTION OBSERVER API WORKS
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
