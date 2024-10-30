@@ -306,13 +306,27 @@ const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--Right");
 
+// current slide
+
+let curSlide = 0;
+
 const slider = document.querySelector(".slider");
 slider.style.transform = "scale(0.4) translateX(-800px)";
 slider.style.overflow = "visible";
 
-slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i})`));
+slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
 
 // 0%, 100%, 200%, 300%
+
+btnRight.addEventListener("click", function () {
+  curSlide++;
+
+  slides.forEach(
+    (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+  );
+});
+
+// -100%, 0%, -100%, -200%
 
 //Translate X move objects along the X axis. so here, we will move
 
