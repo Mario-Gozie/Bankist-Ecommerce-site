@@ -303,9 +303,11 @@ imgTargets.forEach((img) => imgObserver.observe(img));
 // IMPLEMENTING THE SLIDER
 
 const slides = document.querySelectorAll(".slide");
+const btnLeft = document.querySelector(".slider__btn--left");
+const btnRight = document.querySelector(".slider__btn--Right");
 
 const slider = document.querySelector(".slider");
-slider.style.transform = "scale(0.5)";
+slider.style.transform = "scale(0.4) translateX(-800px)";
 slider.style.overflow = "visible";
 
 slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i})`));
