@@ -323,7 +323,7 @@ const maxSlide = slides.length;
 // 0%, 100%, 200%, 300%
 
 // REFACTORING MY CODE TO PREVENT REPEATATION
-
+// FUNCTION FOR CREATING DOTS.
 const createDots = function () {
   slides.forEach(function (_, i) {
     dotContainer.insertAdjacentHTML(
@@ -335,13 +335,28 @@ const createDots = function () {
 
 createDots();
 
+// FUNCTION FOR ACTIVATING THE DOTS
+
+const ActivateDot = function (slide) {
+  document
+    .querySelectorAll(".dots__dot")
+    .forEach((dot) => dot.classList.remove("dots__dot--active"));
+
+  document
+    .querySelector(`.dots__dot[data-slide="${slide}"]`)
+    .classList.add("dots__dot--active");
+};
+
+// FUNCTION FOR THE SLIDE TO PRESENT
 const goToSlides = function (slide) {
   slides.forEach(
     (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
   );
 };
-
+ActivateDot(0);
 goToSlides(0);
+
+// FUNCTION FOR NEXT SLIDE
 
 const nextSlide = function () {
   if (curSlide === maxSlide - 1) {
@@ -356,10 +371,13 @@ const nextSlide = function () {
   // );
 
   goToSlides(curSlide);
+  ActivateDot(curSlide);
 };
 btnRight.addEventListener("click", nextSlide);
 
 // -100%, 0%, -100%, -200%
+
+// FUNCTION FOR GOING TO THE PREVIOUS SLIDE
 
 const prevSlide = function () {
   if (curSlide === 0) {
@@ -369,6 +387,7 @@ const prevSlide = function () {
   }
 
   goToSlides(curSlide);
+  ActivateDot(curSlide);
 };
 
 btnLeft.addEventListener("click", prevSlide);
@@ -390,6 +409,7 @@ dotContainer.addEventListener("click", function (e) {
     const { slide } = e.target.dataset; // getting the slide value which I commented on above can be done with slicing. just as I am doing here. so what is commented above and what is here is the same.
 
     goToSlides(slide);
+    ActivateDot(slide);
   }
 });
 // HOW THE INTERSECTION OBSERVER API WORKS
