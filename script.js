@@ -305,6 +305,7 @@ imgTargets.forEach((img) => imgObserver.observe(img));
 const slides = document.querySelectorAll(".slide");
 const btnLeft = document.querySelector(".slider__btn--left");
 const btnRight = document.querySelector(".slider__btn--right");
+const dotContainer = document.querySelector(".dots");
 
 // current slide
 
@@ -322,6 +323,17 @@ const maxSlide = slides.length;
 // 0%, 100%, 200%, 300%
 
 // REFACTORING MY CODE TO PREVENT REPEATATION
+
+const createDots = function () {
+  slides.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML(
+      "beforeend",
+      `<button class='dots__dot' data-slide='${i}'></button>`
+    );
+  });
+};
+
+createDots();
 
 const goToSlides = function (slide) {
   slides.forEach(
