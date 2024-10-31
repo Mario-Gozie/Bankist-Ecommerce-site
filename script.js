@@ -311,13 +311,13 @@ const btnRight = document.querySelector(".slider__btn--right");
 let curSlide = 0;
 const maxSlide = slides.length;
 
-const slider = document.querySelector(".slider");
-slider.style.transform = "scale(0.4) translateX(-800px)";
-slider.style.overflow = "visible";
+// const slider = document.querySelector(".slider");
+// slider.style.transform = "scale(0.4) translateX(-800px)";
+// slider.style.overflow = "visible";
 
 // slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
 
-// The code abive us reokaced with goToSlides(0); during refactoring.
+// The code above us re with goToSlides(0); during refactoring.
 
 // 0%, 100%, 200%, 300%
 
@@ -333,6 +333,7 @@ goToSlides(0);
 
 const nextSlide = function () {
   if (curSlide === maxSlide - 1) {
+    // The - 1 here is because length which is used to get maxSlide is not zero based
     curSlide = 0;
   } else {
     curSlide++;
@@ -348,6 +349,17 @@ btnRight.addEventListener("click", nextSlide);
 
 // -100%, 0%, -100%, -200%
 
+const prevSlide = function () {
+  if (curSlide === 0) {
+    curSlide = maxSlide - 1;
+  } else {
+    curSlide--;
+  }
+
+  goToSlides(curSlide);
+};
+
+btnLeft.addEventListener("click", prevSlide);
 //Translate X move objects along the X axis. so here, we will move
 
 // HOW THE INTERSECTION OBSERVER API WORKS
