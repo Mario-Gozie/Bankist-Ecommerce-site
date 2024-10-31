@@ -602,3 +602,23 @@ sliders();
 // document.querySelector(".nav").addEventListener(`click`, function (e) {
 //   console.log(`LINKS`);
 // });
+
+// LIFE CYCLE EVENTS
+// The DOMdContentLoaded event listener is an event listener that runs when the DOM is loaded. so all our Javascript code are supposed to be put within it but this is not necessary because the Javascript script is attached to the end of the HTML file. which shows the javascript will run after the HTML is loaded.
+document.addEventListener("DOMContentLoaded", function (e) {
+  console.log("HTML parsed and DOM tree built", e);
+});
+
+// This event listener loads after everything on the page has loaded including pictures.
+window.addEventListener("load", function (e) {
+  console.log("page fully loaded");
+});
+
+// THE BEFOREUNLOAD EVENTLISTENER BELOW CAN BE HELPFUL WHEN LEAVEING A PAGE.
+
+// This event listener is created before a user is about to leave a page.
+// This could be used when someone clicks on a page to leave a site, and you want to ask him if he really wants to leave. This could also be used when someone wants to leave while filling a form or something similar
+// window.addEventListener("beforeunload", function (e) {
+//   e.preventDefault();
+//   e.returnValue = ""; ///This no longer work in most browsers as it used to before 2020, because many developers abused it.
+// });
