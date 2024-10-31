@@ -622,3 +622,10 @@ window.addEventListener("load", function (e) {
 //   e.preventDefault();
 //   e.returnValue = ""; ///This no longer work in most browsers as it used to before 2020, because many developers abused it.
 // });
+
+// A NOTE
+// <script src="script.js"></script>
+
+// Javascript codes imported to HTML head runs before the one included in the body this could slow down runtime of the event listener called DOMContentLoaded because it has to wait for the HTML file to load before it will run. when the Javascript file is run normally, "<script src="script.js"></script>" and it is imported in the head not the body, the HTML file will wait for the javascript code before the DOMContentLoaded will run. if it is run asynchronously "<script Asnyc src="script.js"></script>" and ot os attached to the head, the Javascript file will execute before the HTML then the DOMContentLoaded eventListener will be activated. which is not nice. the HTML is supposed to load first. but when the Javascript file is run with Defer "<script defer src="script.js"></script>" and the code is attached to the head. the HTML will run first, then Javascript will execute, the DOMContentLoaded, this is exactly what is needed. This is important when you are working with Third party library that will require to run in order.
+
+// Note that only modern browsers support async and defer if you need to do this, then you need to put your script at the end of the code (in the end of the body)
