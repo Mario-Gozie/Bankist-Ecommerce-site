@@ -301,117 +301,127 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTargets.forEach((img) => imgObserver.observe(img));
 
 // IMPLEMENTING THE SLIDER
+const sliders = function () {
+  const slides = document.querySelectorAll(".slide");
+  const btnLeft = document.querySelector(".slider__btn--left");
+  const btnRight = document.querySelector(".slider__btn--right");
+  const dotContainer = document.querySelector(".dots");
 
-const slides = document.querySelectorAll(".slide");
-const btnLeft = document.querySelector(".slider__btn--left");
-const btnRight = document.querySelector(".slider__btn--right");
-const dotContainer = document.querySelector(".dots");
+  // current slide
 
-// current slide
+  let curSlide = 0;
+  const maxSlide = slides.length;
 
-let curSlide = 0;
-const maxSlide = slides.length;
+  // const slider = document.querySelector(".slider");
+  // slider.style.transform = "scale(0.4) translateX(-800px)";
+  // slider.style.overflow = "visible";
 
-// const slider = document.querySelector(".slider");
-// slider.style.transform = "scale(0.4) translateX(-800px)";
-// slider.style.overflow = "visible";
+  // slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
 
-// slides.forEach((s, i) => (s.style.transform = `translateX(${100 * i}%)`));
+  // The code above us re with goToSlides(0); during refactoring.
 
-// The code above us re with goToSlides(0); during refactoring.
+  // 0%, 100%, 200%, 300%
 
-// 0%, 100%, 200%, 300%
+  // REFACTORING MY CODE TO PREVENT REPEATATION
 
-// REFACTORING MY CODE TO PREVENT REPEATATION
-// FUNCTION FOR CREATING DOTS.
-const createDots = function () {
-  slides.forEach(function (_, i) {
-    dotContainer.insertAdjacentHTML(
-      "beforeend",
-      `<button class='dots__dot' data-slide='${i}'></button>`
+  // FUNCTIONS
+  // FUNCTION FOR CREATING DOTS.
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML(
+        "beforeend",
+        `<button class='dots__dot' data-slide='${i}'></button>`
+      );
+    });
+  };
+
+  // FUNCTION FOR ACTIVATING THE DOTS
+
+  const ActivateDot = function (slide) {
+    document
+      .querySelectorAll(".dots__dot")
+      .forEach((dot) => dot.classList.remove("dots__dot--active"));
+
+    document
+      .querySelector(`.dots__dot[data-slide="${slide}"]`)
+      .classList.add("dots__dot--active");
+  };
+
+  // FUNCTION FOR THE SLIDE TO PRESENT
+  const goToSlides = function (slide) {
+    slides.forEach(
+      (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
     );
+  };
+
+  // FUNCTION FOR NEXT SLIDE
+
+  const nextSlide = function () {
+    if (curSlide === maxSlide - 1) {
+      // The - 1 here is because length which is used to get maxSlide is not zero based
+      curSlide = 0;
+    } else {
+      curSlide++;
+    }
+
+    // slides.forEach(
+    //   (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
+    // );
+
+    goToSlides(curSlide);
+    ActivateDot(curSlide);
+  };
+
+  // FUNCTION FOR GOING TO THE PREVIOUS SLIDE
+
+  const prevSlide = function () {
+    if (curSlide === 0) {
+      curSlide = maxSlide - 1;
+    } else {
+      curSlide--;
+    }
+
+    goToSlides(curSlide);
+    ActivateDot(curSlide);
+  };
+  const init = function () {
+    // Here, I am putting everythins that need to fuction that has to start each time the sit is loaded into an initialization function.
+    goToSlides(0);
+    createDots();
+    ActivateDot(0);
+  };
+
+  init();
+  //Event handlers
+  btnRight.addEventListener("click", nextSlide);
+
+  // -100%, 0%, -100%, -200%
+
+  btnLeft.addEventListener("click", prevSlide);
+  //Translate X move objects along the X axis. so here, we will move
+
+  // ATTACHING ATTACHING EVENT HANDLERS TO KEYBOARD ARROW KEYS (LEFT AND RIGHT TO MAKE SLIDES MOVE)
+
+  document.addEventListener("keydown", function (e) {
+    console.log(e);
+    if (e.key === "ArrowLeft") prevSlide();
+
+    e.key === "ArrowRight" && nextSlide(); //conditional using short circuiting. it is more like the if statement above but this one is for the right arrow key. we can use the same short circuiting for the if statement above.
+  });
+
+  dotContainer.addEventListener("click", function (e) {
+    if (e.target.classList.contains("dots__dot")) {
+      // const slide = e.target.dataset.slice; // here I am saying, in that target, get the dataset value which usually start with the word data in the html element, and in this case, it is data-slide
+
+      const { slide } = e.target.dataset; // getting the slide value which I commented on above can be done with slicing. just as I am doing here. so what is commented above and what is here is the same.
+
+      goToSlides(slide);
+      ActivateDot(slide);
+    }
   });
 };
 
-createDots();
-
-// FUNCTION FOR ACTIVATING THE DOTS
-
-const ActivateDot = function (slide) {
-  document
-    .querySelectorAll(".dots__dot")
-    .forEach((dot) => dot.classList.remove("dots__dot--active"));
-
-  document
-    .querySelector(`.dots__dot[data-slide="${slide}"]`)
-    .classList.add("dots__dot--active");
-};
-
-// FUNCTION FOR THE SLIDE TO PRESENT
-const goToSlides = function (slide) {
-  slides.forEach(
-    (s, i) => (s.style.transform = `translateX(${100 * (i - slide)}%)`)
-  );
-};
-ActivateDot(0);
-goToSlides(0);
-
-// FUNCTION FOR NEXT SLIDE
-
-const nextSlide = function () {
-  if (curSlide === maxSlide - 1) {
-    // The - 1 here is because length which is used to get maxSlide is not zero based
-    curSlide = 0;
-  } else {
-    curSlide++;
-  }
-
-  // slides.forEach(
-  //   (s, i) => (s.style.transform = `translateX(${100 * (i - curSlide)}%)`)
-  // );
-
-  goToSlides(curSlide);
-  ActivateDot(curSlide);
-};
-btnRight.addEventListener("click", nextSlide);
-
-// -100%, 0%, -100%, -200%
-
-// FUNCTION FOR GOING TO THE PREVIOUS SLIDE
-
-const prevSlide = function () {
-  if (curSlide === 0) {
-    curSlide = maxSlide - 1;
-  } else {
-    curSlide--;
-  }
-
-  goToSlides(curSlide);
-  ActivateDot(curSlide);
-};
-
-btnLeft.addEventListener("click", prevSlide);
-//Translate X move objects along the X axis. so here, we will move
-
-// ATTACHING ATTACHING EVENT HANDLERS TO KEYBOARD ARROW KEYS (LEFT AND RIGHT TO MAKE SLIDES MOVE)
-
-document.addEventListener("keydown", function (e) {
-  console.log(e);
-  if (e.key === "ArrowLeft") prevSlide();
-
-  e.key === "ArrowRight" && nextSlide(); //conditional using short circuiting. it is more like the if statement above but this one is for the right arrow key. we can use the same short circuiting for the if statement above.
-});
-
-dotContainer.addEventListener("click", function (e) {
-  if (e.target.classList.contains("dots__dot")) {
-    // const slide = e.target.dataset.slice; // here I am saying, in that target, get the dataset value which usually start with the word data in the html element, and in this case, it is data-slide
-
-    const { slide } = e.target.dataset; // getting the slide value which I commented on above can be done with slicing. just as I am doing here. so what is commented above and what is here is the same.
-
-    goToSlides(slide);
-    ActivateDot(slide);
-  }
-});
+sliders();
 // HOW THE INTERSECTION OBSERVER API WORKS
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
