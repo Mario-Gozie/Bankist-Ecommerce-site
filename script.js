@@ -362,6 +362,15 @@ const prevSlide = function () {
 btnLeft.addEventListener("click", prevSlide);
 //Translate X move objects along the X axis. so here, we will move
 
+// ATTACHING ATTACHING EVENT HANDLERS TO KEYBOARD ARROW KEYS (LEFT AND RIGHT TO MAKE SLIDES MOVE)
+
+document.addEventListener("keydown", function (e) {
+  console.log(e);
+  if (e.key === "ArrowLeft") prevSlide();
+
+  e.key === "ArrowRight" && nextSlide(); //conditional using short circuiting. it is more like the if statement above but this one is for the right arrow key. we can use the same short circuiting for the if statement above.
+});
+
 // HOW THE INTERSECTION OBSERVER API WORKS
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
