@@ -383,6 +383,15 @@ document.addEventListener("keydown", function (e) {
   e.key === "ArrowRight" && nextSlide(); //conditional using short circuiting. it is more like the if statement above but this one is for the right arrow key. we can use the same short circuiting for the if statement above.
 });
 
+dotContainer.addEventListener("click", function (e) {
+  if (e.target.classList.contains("dots__dot")) {
+    // const slide = e.target.dataset.slice; // here I am saying, in that target, get the dataset value which usually start with the word data in the html element, and in this case, it is data-slide
+
+    const { slide } = e.target.dataset; // getting the slide value which I commented on above can be done with slicing. just as I am doing here. so what is commented above and what is here is the same.
+
+    goToSlides(slide);
+  }
+});
 // HOW THE INTERSECTION OBSERVER API WORKS
 
 // PRACTICICING WITH THE INTESECTION OBSERVER.
